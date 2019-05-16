@@ -1,4 +1,4 @@
-﻿
+﻿using System;
 
 
 namespace ConsoleX
@@ -8,12 +8,14 @@ namespace ConsoleX
 
         // declare a delegate 
 
-      
-        public delegate void PostTaskDelegate(double results);
-     
-        public PostTaskDelegate postDlg;
 
-        // initialize the delegate in constructor 
+        //public delegate void MathCompleteEventHandler( double sum);
+
+        //public event MathCompleteEventHandler MathComplete ;
+
+
+        public event EventHandler<MathPerformedEventArgs> MathComplete;
+
 
 
         public Math()
@@ -25,14 +27,14 @@ namespace ConsoleX
         {
 
             double sum = x + y;
-            postDlg(sum);
+            MathComplete(sum);
         }
 
        public  void Multiply(int x, int y)
 
         {
             double product = x * y;
-            postDlg(product);
+            MathComplete(product);
 
         }
 
