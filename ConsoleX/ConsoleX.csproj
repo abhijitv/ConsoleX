@@ -43,8 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Math.cs" />
-    <Compile Include="MathPerformedEventArgs.cs" />
+    <Compile Include="IMathPerformed.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="MathPeformedEventArgs.cs" />
+    <Compile Include="MathSvc4Delegate.cs" />
+    <Compile Include="MathSvc4Event.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

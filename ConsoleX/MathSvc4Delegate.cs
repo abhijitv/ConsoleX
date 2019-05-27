@@ -3,29 +3,20 @@
 
 namespace ConsoleX
 {
-    public class Math
+    public class MathSvc4Delegate
     {
 
-        // declare a delegate 
+         public delegate void MathCompleteEventHandler( double sum);
 
+         public MathCompleteEventHandler MathComplete ;
 
-        //public delegate void MathCompleteEventHandler( double sum);
-
-        //public event MathCompleteEventHandler MathComplete ;
-
-
-        public event EventHandler<MathPerformedEventArgs> MathComplete;
-
-
-
-        public Math()
+        public MathSvc4Delegate()
         {
-
+            
         }
 
         public void Add(int x, int y)
         {
-
             double sum = x + y;
             MathComplete(sum);
         }
