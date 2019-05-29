@@ -10,8 +10,8 @@ namespace ConsoleX
     public interface IMathPerformed
     {
 
-        void LogEvent(object sendder, MathPerformedEventArgs e);
-        void Printvent(object sneder, MathPerformedEventArgs e);
+     //  void LogEvent(object sendder, MathPerformedEventArgs e);
+    //    void Printvent(object sneder, MathPerformedEventArgs e);
 
        
 

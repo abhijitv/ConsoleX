@@ -46,6 +46,7 @@
     <Compile Include="IMathPerformed.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="MathPeformedEventArgs.cs" />
+    <Compile Include="MathSvc4Action.cs" />
     <Compile Include="MathSvc4Delegate.cs" />
     <Compile Include="MathSvc4Event.cs" />
     <Compile Include="Program.cs" />

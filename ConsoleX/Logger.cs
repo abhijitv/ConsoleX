@@ -16,18 +16,18 @@ namespace ConsoleX
         }
 
 
-        public void LogEvent(object sender, MathPerformedEventArgs e)
-        {
+        //public void LogEvent(object sender, MathPerformedEventArgs e)
+        //{
 
-            Console.WriteLine("Event log -" + e.Results);
-            //throw new NotImplementedException();
-        }
+        //    Console.WriteLine("Event log -" + e.Results);
+        //    //throw new NotImplementedException();
+        //}
 
-        public void Printvent(object sender, MathPerformedEventArgs e)
-        {
-            Console.WriteLine("Print to Console -" + e.Results);
-            Console.ReadLine();
-            //throw new NotImplementedException();
-        }
+        //public void Printvent(object sender, MathPerformedEventArgs e)
+        //{
+        //    Console.WriteLine("Print to Console -" + e.Results);
+        //    Console.ReadLine();
+        //    //throw new NotImplementedException();
+        //}
     }
 }
