@@ -7,6 +7,7 @@ namespace ConsoleX
     {
 
          public delegate void MathCompleteEventHandler( double sum);
+        public Func<int, int, double> DoSoneOperation;
 
          public MathCompleteEventHandler MathComplete ;
 
@@ -28,7 +29,7 @@ namespace ConsoleX
             MathComplete(product);
 
         }
-
+        
      
 
     }
