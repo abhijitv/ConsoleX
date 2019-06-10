@@ -11,5 +11,8 @@ namespace ConsoleX
 
         public string WebsiteURL { get; set; }
         public string WebssiteData { get; set; }
+
+      
+
     }
 }

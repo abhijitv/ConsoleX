@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web;
+using System.Threading.Tasks;
 
 namespace ConsoleX
 
@@ -8,10 +9,11 @@ namespace ConsoleX
     class Program
     {
         static MathSvc4Delegate mathSvc4Delegate;
-        static   int x;
-        static  int y;
+        static int x;
+        static int y;
         static MathSvc4Event mathSvc4Event;
         static MathSvc4Action mathSvc4Action;
+        static List<WebsiteDataModel> lstWebsiteModels;
         static void Main(string[] args)
         {
 
@@ -25,7 +27,7 @@ namespace ConsoleX
             switch (Convert.ToInt32(Console.ReadLine()))
             {
 
-                
+
                 case 1: // use only delegates 
                     GetInputs();
                     Domath(x, y);
@@ -43,10 +45,10 @@ namespace ConsoleX
                 case 4: // when the delegate class does not know anything about its being asked to do 
                     GetInputs();
                     mathSvc4Delegate = new MathSvc4Delegate();
-                    int result=0;
+                    int result = 0;
                     mathSvc4Delegate.DoSoneOperation += (x, y) =>
                      {
-                          result = x + y;
+                         result = x + y;
                          return result;
                      };
                     mathSvc4Delegate.DoSoneOperation(x, y);
@@ -64,21 +66,32 @@ namespace ConsoleX
 
             void PrepData()
             {
-                List<string> lstURLs = new List<string>();
-                lstURLs.Add("www.google.com");
-                lstURLs.Add("www.yelp.com");
-                lstURLs.Add("www.amazon.com");
-                lstURLs.Add("www.microsoft.com");
-                lstURLs.Add("www.spekify.com");
+                lstWebsiteModels = new List<WebsiteDataModel>();
+                lstWebsiteModels.Add(new WebsiteDataModel() { WebsiteURL = "www.yelp.com" });
+                lstWebsiteModels.Add(new WebsiteDataModel() { WebsiteURL = "www.yahoo.com" });
+                lstWebsiteModels.Add(new WebsiteDataModel() { WebsiteURL = "www.foodpanda.com" });
+                lstWebsiteModels.Add(new WebsiteDataModel() { WebsiteURL = "www.deliveroo.com" });
+                lstWebsiteModels.Add(new WebsiteDataModel() { WebsiteURL = "www.honestbee.com" });
             }
-          
-            void ProcessDownloadOperation()
+
+           async  void ProcessDownloads()
             {
 
-                WebsiteDataModel websitemodel = new WebsiteDataModel();
+                foreach( WebsiteDataModel wsm in lstWebsiteModels)
+                {
+                    wsm.WebssiteData =  await  Task.Run(() => DownloadURL(wsm.WebsiteURL));
+                }
 
 
             }
+
+            string  DownloadURL (string URL )
+            {
+
+                return "Color";
+            }
+
+
 
             void DoMath4Action(int x, int y)
             {
@@ -92,7 +105,7 @@ namespace ConsoleX
             {
 
                 Console.WriteLine("Enter the first  number");
-                 x = Convert.ToInt32(Console.ReadLine());
+                x = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("enter the second number");
                 y = Convert.ToInt32(Console.ReadLine());
 
@@ -124,7 +137,7 @@ namespace ConsoleX
 
         }
 
-       static void PublishResults4Event(object sender,MathPeformedEventArgs e)
+        static void PublishResults4Event(object sender, MathPeformedEventArgs e)
         {
 
             Console.WriteLine(e.result);
