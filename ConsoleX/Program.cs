@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace ConsoleX
 
@@ -13,8 +14,8 @@ namespace ConsoleX
         static int y;
         static MathSvc4Event mathSvc4Event;
         static MathSvc4Action mathSvc4Action;
-        static List<WebsiteDataModel> lstWebsiteModels;
-        static void Main(string[] args)
+        
+         static void Main(string[] args)
         {
 
             Console.WriteLine("Please make your choice");
@@ -58,37 +59,46 @@ namespace ConsoleX
 
                 case 5: // download some websites automatically 
                     PrepData();
+                    DoProcess();
+                    Console.ReadLine();
                     break;
+                case 6: // Do the data  crunching 
+                    PrepData();  // prepare the  URLs that need to be downloaded 
                 default:
                     break;
             }
 
-
-            void PrepData()
+            async Task DoProcess()
             {
-                lstWebsiteModels = new List<WebsiteDataModel>();
-                lstWebsiteModels.Add(new WebsiteDataModel() { WebsiteURL = "www.yelp.com" });
-                lstWebsiteModels.Add(new WebsiteDataModel() { WebsiteURL = "www.yahoo.com" });
-                lstWebsiteModels.Add(new WebsiteDataModel() { WebsiteURL = "www.foodpanda.com" });
-                lstWebsiteModels.Add(new WebsiteDataModel() { WebsiteURL = "www.deliveroo.com" });
-                lstWebsiteModels.Add(new WebsiteDataModel() { WebsiteURL = "www.honestbee.com" });
+                var watch = System.Diagnostics.Stopwatch.StartNew();
+                await ProcessDownloads();
+                watch.Stop();
+                Console.WriteLine(watch.ElapsedMilliseconds/1000);
+
+
             }
 
-           async  void ProcessDownloads()
+            
+
+           async  Task  ProcessDownloads()
             {
-
-                foreach( WebsiteDataModel wsm in lstWebsiteModels)
+                List<Task<string>> lstTasksDataModel = new List<Task<string>>();
+                foreach ( WebsiteDataModel wsm in lstWebsiteModels)
                 {
-                    wsm.WebssiteData =  await  Task.Run(() => DownloadURL(wsm.WebsiteURL));
+                    lstTasksDataModel.Add(Task.Run(() => DownloadURL(wsm.WebsiteURL)));
+                    
                 }
-
+                var results = await Task.WhenAll(lstTasksDataModel);
 
             }
 
             string  DownloadURL (string URL )
             {
-
-                return "Color";
+                // here goes the code for actual download of the URL 
+                WebClient wc = new WebClient();
+                Console.WriteLine("Downloading " + URL);
+                return (wc.DownloadString(URL));
+               
             }
 
 
