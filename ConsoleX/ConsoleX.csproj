@@ -43,16 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataPrep.cs" />
-    <Compile Include="IMathPerformed.cs" />
+    <Compile Include="Nine2Five\DataPrep.cs" />
+    <Compile Include="Nine2Five\DataProcessing.cs" />
+    <Compile Include="MathSvc\IMathPerformed.cs" />
     <Compile Include="Logger.cs" />
-    <Compile Include="MathPeformedEventArgs.cs" />
-    <Compile Include="MathSvc4Action.cs" />
-    <Compile Include="MathSvc4Delegate.cs" />
-    <Compile Include="MathSvc4Event.cs" />
+    <Compile Include="MathSvc\MathPeformedEventArgs.cs" />
+    <Compile Include="MathSvc\MathSvc.cs" />
+    <Compile Include="MathSvc\MathSvc4Action.cs" />
+    <Compile Include="MathSvc\MathSvc4Delegate.cs" />
+    <Compile Include="MathSvc\MathSvc4Event.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebsiteDataModel.cs" />
+    <Compile Include="Nine2Five\WebsiteDataModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

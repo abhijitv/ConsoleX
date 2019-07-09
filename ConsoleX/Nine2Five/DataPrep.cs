@@ -7,14 +7,14 @@ using System.IO;
 
 namespace ConsoleX
 {
-    public class DataPrep
+    public static class DataPrep
     {
-        List<WebsiteDataModel> lstWebsiteModels;
+       static List<WebsiteDataModel> lstWebsiteModels;
         /// <summary>
         /// create the list of URls to be downloaded   by opening a text file and getting all the links from 
         /// there 
         /// </summary>
-        private  void BuildURLList(string path )
+        public  static void BuildURLList(string path)
         {
 
             // variables declaration 
@@ -36,6 +36,8 @@ namespace ConsoleX
             //lstWebsiteModels = new List<WebsiteDataModel>();
 
         }
+
+
 
         
     }
