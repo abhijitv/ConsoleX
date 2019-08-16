@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleX
 {
-    public class MathService
+    public class MathSvcDlgOnly:ImathSvc
     {
 
         // Local variable for operation type 
@@ -17,16 +17,14 @@ namespace ConsoleX
         public MathComplete MathCompleteDlg; // delegate that will be assigned the function at run time 
 
 
-
-        public void AddNumbersDelegateOnly(double x,  double y)
+        public void AddNumbers(double x, double y)
         {
-
             // do the addition 
             double sum = x + y;
 
             // Call the delegate 
             MathCompleteDlg(sum);
-        }
 
+        }
     }
 }

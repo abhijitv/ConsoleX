@@ -13,70 +13,111 @@ namespace ConsoleX
 
         DelegateOnly,
         EventOnly,
-        EventDelegate,
-        Action
+        EventNDelegate,
+        Action,
+        None
     }
 
     class Program
     {
-        static OperationType opnType;
-        static MathService MathSvc;
+        static OperationType opnType = OperationType.None;
+        
 
        static  double x, y;
         public static void Main()
         {
-            // Get inputs from screen 
-            GetInputs(); // Get the inputs 
+            while (true)
+           {
 
-            CallMathService();  // call the proper service 
+                GetInputs();  // Get inputs from screen 
+
+                CallMathService();  // call the proper service 
+
+            }
         }
+
+        
 
         public static void   GetInputs()
         {
-
+            // get the first number 
             Console.WriteLine("Hello World! Please enter a number");
-            int result;
-            while( !int.TryParse(Console.ReadLine(),out result))
+            Double  number;
+            
+            while( !double.TryParse(Console.ReadLine(),out  number))
             {
                 Console.WriteLine("Please enter a valid numerical value");
                 Console.WriteLine("Please enter a number");
                 
             }
-            
+            x = number;
+            // get the second number 
+            Console.WriteLine("Please enter another number");
+            while (!double.TryParse(Console.ReadLine(), out number))
+        
+            {
+                Console.WriteLine("please enter a valid numerical value");
+                Console.WriteLine("please enter a number");
+            }
+
+            y = number;
+
+            // get the operation type 
+            int opnTypeVal;
+            Console.WriteLine("please enter an operation type");
+            Console.WriteLine("o- Delegate only, 1-Event Only, 2-Delegate and Event, 3-Actions, 4 -Async");
+            while (!int.TryParse(Console.ReadLine(), out opnTypeVal))
+            {
+                Console.WriteLine("Please enter a valid numerical value");
+                Console.WriteLine("Please enter a  number");
+            }
+
+            opnType = (OperationType)opnTypeVal;
 
         }
 
         public static  void CallMathService()
         {
-            MathSvc = new MathService();
-
-            // assign the delegate  
-            MathSvc.MathCompleteDlg = PublishResults;
-
+           
             // call the right function  
             switch (opnType)
             {
                 case OperationType.DelegateOnly:
-                    MathSvc.AddNumbersDelegateOnly(x, y);
+                    var mathSvcDlgOnly = new MathSvcDlgOnly();
+                    // assign the delegate  
+                    mathSvcDlgOnly.MathCompleteDlg = PublishResults;
+                    mathSvcDlgOnly.AddNumbers(x, y);
                     break;
                 case OperationType.EventOnly:
+                  
 
                     break;
-                case OperationType.EventDelegate:
+                case OperationType.EventNDelegate:
+                    var mathSvcEventNDelegate = new MathSvcEventNDelegate();
+                    mathSvcEventNDelegate.MathPeformed+= PublishResults;
+                    mathSvcEventNDelegate.AddNumbers(x, y);
                     break;
                 case OperationType.Action:
+                    break;
+                case OperationType.None:
                     break;
                 default:
                     break;
             }
-            
+          
         }
 
 
-     public   static void PublishResults(double result)
+     public static void PublishResults(double result)
         {
             Console.WriteLine("The result of the operation is " + result);
-            GetInputs();
+           
+        }
+
+        public static void MathCompleteOperation( object sender, EventArgs e)
+        {
+           // Console.WriteLine("The result of the operation is " + e.);
+          
         }
 
     }
