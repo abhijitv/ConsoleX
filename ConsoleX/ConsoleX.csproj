@@ -43,10 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleLogger.cs" />
+    <Compile Include="IMathPerformed.cs" />
     <Compile Include="ImathSvc.cs" />
-    <Compile Include="MathCompleteEventArgs.cs" />
+    <Compile Include="MathPerformedEventArgs.cs" />
+    <Compile Include="MathSvcAction.cs" />
     <Compile Include="MathSvcDlgOnly.cs" />
     <Compile Include="MathSvcEventNDelegate.cs" />
+    <Compile Include="MathSvcEventOnly.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

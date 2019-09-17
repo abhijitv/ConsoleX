@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ConsoleX
 {
-    public class MathCompleteEventArgs:EventArgs
+    public class MathPerformedEventArgs:EventArgs
     {
 
-      public  double result;
-        public MathCompleteEventArgs(double number )
+        public double result { get; set; }
+        public MathPerformedEventArgs(double number)
         {
             result = number;
         }

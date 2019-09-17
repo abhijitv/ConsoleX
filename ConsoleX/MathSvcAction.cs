@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace ConsoleX
 {
-    public class MathSvcEventNDelegate
+    class MathSvcAction
     {
-
-        public delegate void MathPerformedDlg(double rsult);
-        public event MathPerformedDlg MathPeformedEvent;
+        public Action<double> MathPerformed;
 
         public void AddNumbers(double x, double y)
         {
+
             double result = x + y;
-            MathPeformedEvent(result);
+            MathPerformed(result);
+
         }
+
 
     }
 }
